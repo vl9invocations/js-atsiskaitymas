@@ -24,23 +24,27 @@ output.style.maxWidth = '700px';
 const list = document.querySelector("#list");
 const users = new Map();
 
-showUsersBtn.addEventListener('mousedown', () => {
-    getUsers();
+showUsersBtn.addEventListener('mousedown', async () => {
+    await getUsers(ENDPOINT);
     generateOutput();
 });
 
 
-async function getUsers() {
-    await fetch(ENDPOINT)
-        .then(response => response.json())
-        .then(data => {
-            data.map(element => {
-                users.set(element.id, {
-                    login: element.login,
-                    avatar: element.avatar_url
-                })
-            });
-        })
+async function getUsers(url) {
+    try {
+        return await fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                data.map(element => {
+                    users.set(element.id, {
+                        login: element.login,
+                        avatar: element.avatar_url
+                    })
+                });
+            })
+    } catch (error) {
+        console.log("Error");
+    }
 }
 
 function createList() {

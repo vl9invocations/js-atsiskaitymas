@@ -47,7 +47,7 @@ const styles = {
         margin: 0 auto;
         max-width: 470px;
         padding: 2em 4em;
-        background-color: #f7f7f7;;
+        background-color: #f7f7f7;
         line-height: 1.5;
     `
 }   
